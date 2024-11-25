@@ -1,6 +1,8 @@
 """League table"""
 
+import pagerank_algo
 import pagerank_read
+##################################################################################################
 
 def main() -> None:
     """
@@ -12,5 +14,10 @@ def main() -> None:
     players = pagerank_read.read_players(players_file)
     results = pagerank_read.read_games(games_file)
 
+    n = pagerank_algo.numb_of_players(players)
+    connections = pagerank_algo.connect_list(players, results)
+    rank = pagerank_algo.rank_return(n, connections)
+
+    print(rank)
 if __name__ == "__main__":
     main()
