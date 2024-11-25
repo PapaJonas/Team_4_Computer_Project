@@ -1,7 +1,9 @@
 """League table"""
 
-import pagerank_project.pagerank_algo as pagerank_algo
-import pagerank_project.pagerank_read as pagerank_read
+import pagerank_read
+import pagerank_algo
+import pagerank_write
+
 ##################################################################################################
 
 def main() -> None:
@@ -10,14 +12,15 @@ def main() -> None:
     """
     players_file = 'teams.csv'
     games_file = 'games.csv'
-
+    filename = 'example.csv'
     players = pagerank_read.read_players(players_file)
     results = pagerank_read.read_games(games_file)
+    information = pagerank_read.update_players(results, players)
 
     n = pagerank_algo.numb_of_players(players)
     connections = pagerank_algo.connect_list(players, results)
     rank = pagerank_algo.rank_return(n, connections)
 
-    print(rank)
+    pagerank_write.write_function(filename, information, rank)
 if __name__ == "__main__":
     main()

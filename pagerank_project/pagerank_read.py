@@ -51,21 +51,27 @@ def read_games(games_file: str) -> list[tuple[str, str, str, str]]:
 
     return results
 ##################################################################################################
-def update_players(results: list[tuple[str, str, str , str]], players_dict: dict[str, int]) -> None:
+def update_players(results: list[tuple[str, str, str , str]], players_list: list[str]) -> dict:
     """
-    Updates the scores of players/teams based on the game results.
+    Update player/team scores based on game results.
 
     Args:
-        results (List[Tuple[str, str, str, str]]): A list of tuples containing game results.
-        players_dict (Dict[str, int]): A dictionary containing the current scores of players/teams.
+        results (list[tuple[str, str, str, str]]): A list of tuples representing game results. 
+            Each tuple contains information such as the teams involved, the winner, and additional data.
+        players_list (list[str]): A list of player/team names.
 
-    Modifies:
-        players_dict: Updates the scores of the winners in the dictionary.
+    Returns:
+        dict[str, list[int]]: A dictionary where the keys are player/team names, and the values are lists
+            containing two integers: the first for the number of wins and the second reserved for future use.
+
+    Notes:
+        - If the winner is recorded as 'tie', no updates are made.
+        - Whitespace around winner names is stripped before processing.
     """
+    players_dict = {player : [0, 0] for player in players_list}
     for _, _, winner, _ in results:
         if winner == 'tie':
             continue
         winner = winner.strip()
-        if winner not in players_dict:
-            players_dict[winner] = 0
-        players_dict[winner] += 1
+        players_dict[winner][0] += 1
+    return players_dict
