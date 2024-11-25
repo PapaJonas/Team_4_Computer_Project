@@ -1,7 +1,7 @@
 """League table"""
 
-import pagerank_algo
-import pagerank_read
+import pagerank_project.pagerank_algo as pagerank_algo
+import pagerank_project.pagerank_read as pagerank_read
 ##################################################################################################
 
 def main() -> None:
