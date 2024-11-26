@@ -3,6 +3,7 @@
 import pagerank_read
 import pagerank_algo
 import pagerank_write
+import pagerank_cli
 
 ##################################################################################################
 
@@ -10,9 +11,10 @@ def main() -> None:
     """
     Main function to execute the tournament score processing.
     """
-    players_file = 'teams.csv'
-    games_file = 'games.csv'
-    filename = 'example.csv'
+    # players_file = 'teams.csv'
+    # games_file = 'games.csv'
+    # filename = 'example.csv'
+    players_file, games_file, filename = pagerank_cli.cli()
     players = pagerank_read.read_players(players_file)
     results = pagerank_read.read_games(games_file)
     information = pagerank_read.update_players(results, players)
