@@ -3,6 +3,7 @@
 import pagerank_read
 import pagerank_algo
 import pagerank_write
+import visualize
 
 ##################################################################################################
 
@@ -20,7 +21,7 @@ def main() -> None:
     n = pagerank_algo.numb_of_players(players)
     connections = pagerank_algo.connect_list(players, results)
     rank = pagerank_algo.rank_return(n, connections)
-
     pagerank_write.write_function(filename, information, rank)
+    visualize.graph_create(filename, games_file)
 if __name__ == "__main__":
     main()
