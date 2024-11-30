@@ -23,5 +23,6 @@ def main() -> None:
     rank = pagerank_algo.rank_return(n, connections)
     pagerank_write.write_function(filename, information, rank)
     visualize.graph_create(filename, games_file)
+
 if __name__ == "__main__":
     main()

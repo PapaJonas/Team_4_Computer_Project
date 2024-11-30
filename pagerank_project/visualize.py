@@ -39,7 +39,8 @@ def graph_create(filename_results: str, filename_games: str) -> None:
         for el in to_check:
             if len(set(el.strip().split(',')[2])) == 2:
                 content.append(','.join([el.strip().split(',')[1], el.strip().split(',')[0]]))
-        games = [(el.strip().split(',')[0], el.strip().split(',')[1]) for el in content]
+                    
+    games = [(el.strip().split(',')[0], el.strip().split(',')[1]) for el in content]
 
     G.add_edges_from(games)
 
