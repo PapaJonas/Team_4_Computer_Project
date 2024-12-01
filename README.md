@@ -95,4 +95,6 @@ pagerank_write.write_function(filename, information, rank)
         2. node's size depends on team's rank
         3. nodes are connected with directed edges.
         4. edge's direction is derived by (**winner** -> **loser**) or (<->) if the game result is *tie*.
+        
+![photo_2024-12-01_18-27-19](https://github.com/user-attachments/assets/6b75bcd8-f36a-4594-b1af-348a7d229262)
 
