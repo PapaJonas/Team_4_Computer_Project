@@ -29,7 +29,6 @@ def write_function(filename, information, rank):
     def func(ans):
         return ans[0:1]
     sorted_information = sorted(ans, key = func, reverse = True)
-    print(sorted_information)
     with open(filename, 'w', encoding='utf-8') as file:
         file.write("team,games,points,rank\n")
         for team_data in sorted_information:

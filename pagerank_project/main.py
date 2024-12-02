@@ -24,7 +24,7 @@ def main() -> None:
     players = pagerank_read.read_players(players_file)
     results = pagerank_read.read_games(games_file)
     information = pagerank_read.update_players(results, players, pts_per_win, pts_per_draw)
-    
+
     n = len(players)
     connections = pagerank_algo.connect_list(players, results)
     rank = pagerank_algo.rank_return(n, connections, damping)
