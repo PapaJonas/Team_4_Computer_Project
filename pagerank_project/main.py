@@ -1,4 +1,6 @@
 """League table"""
+import os
+print(f"Current Working Directory: {os.getcwd()}")
 
 import pagerank_read
 import pagerank_algo
@@ -19,15 +21,14 @@ def main() -> None:
     damping = 0.15 #
     # Завдання Нестору, щоб всі параметри вище вписувались через argparse...
     # players_file, games_file, filename = pagerank_cli.cli()
-    
     players = pagerank_read.read_players(players_file)
     results = pagerank_read.read_games(games_file)
-    
     information = pagerank_read.update_players(results, players, pts_per_win, pts_per_draw)
     
     n = len(players)
     connections = pagerank_algo.connect_list(players, results)
     rank = pagerank_algo.rank_return(n, connections, damping)
+
     pagerank_write.write_function(filename, information, rank)
     visualize.graph_create(filename, games_file)
 
