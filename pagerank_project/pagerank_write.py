@@ -1,4 +1,4 @@
-'''!!!'''
+'''A module of wruting function'''
 def write_function(filename, information, rank):
     """
     Records the ranking of the teams to a CSV file.
@@ -11,7 +11,7 @@ def write_function(filename, information, rank):
     writes the sorted data to a CSV file
     Parameters:
         filename : str, the path of the CSV file where the data will be written.
-        information : list of dict, a list of dictionaries containing team information.
+        information dict, dictionary containing team information.
         rank (list[int]): List of ranks for the teams.
 
     Return:
@@ -20,21 +20,18 @@ def write_function(filename, information, rank):
     Example Usage:
     --------------
     rank = [15, 10, 5]
-    information = [
-        {"team1": [99, 200]},
-        {"team2": [50, 50]},
-        {"team3": [50, 40]}
-    ]
+    information = {"team1": [99, 200], "team2": [50, 50]}, "team3": [50, 40]}
     write_function("example.csv", information, rank)
     """
     ans = []
     for i, team_data in enumerate(information):
-        ans.append([information[team_data][0], rank[i], team_data])
+        ans.append([information[team_data][0], rank[i], information[team_data][2], team_data])
     def func(ans):
-        return [ans[0], ans[1]]
+        return ans[0:1]
     sorted_information = sorted(ans, key = func, reverse = True)
+    print(sorted_information)
     with open(filename, 'w', encoding='utf-8') as file:
-        file.write("team,points,rank\n")
+        file.write("team,games,points,rank\n")
         for team_data in sorted_information:
-            points, rank_value, team_name = team_data
-            file.write(f"{team_name},{points},{rank_value}\n")
+            points, rank_value, games, team_name = team_data
+            file.write(f"{team_name},{games},{points},{rank_value}\n")

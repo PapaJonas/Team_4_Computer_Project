@@ -51,27 +51,34 @@ def read_games(games_file: str) -> list[tuple[str, str, str, str]]:
 
     return results
 ##################################################################################################
-def update_players(results: list[tuple[str, str, str , str]], players_list: list[str]) -> dict:
+def update_players(results: list[tuple[str, str, str , str]], players_list: list[str], pts_per_win, pts_per_draw) -> dict:
     """
     Update player/team scores based on game results.
 
     Args:
-        results (list[tuple[str, str, str, str]]): A list of tuples representing game results. 
-            Each tuple contains information such as the teams involved, the winner, and additional data.
+        results (list[tuple[str, str, str, str]]): 
+        A list of tuples representing game results. 
+            Each tuple contains information such as the teams involved, 
+            the winner, and additional data.
         players_list (list[str]): A list of player/team names.
 
     Returns:
-        dict[str, list[int]]: A dictionary where the keys are player/team names, and the values are lists
-            containing two integers: the first for the number of wins and the second reserved for future use.
+        dict[str, list[int]]: A dictionary where the keys are player/team names, 
+        and the values are lists containing two integers: the first for the 
+        number of wins and the second reserved for future use.
 
     Notes:
         - If the winner is recorded as 'tie', no updates are made.
         - Whitespace around winner names is stripped before processing.
     """
-    players_dict = {player : [0, 0] for player in players_list}
-    for _, _, winner, _ in results:
+    players_dict = {player : [0, 0, 0] for player in players_list}
+    for team_1, team_2, winner, _ in results:
+        players_dict[team_1][2] += 1
+        players_dict[team_2][2] += 1
         if winner == 'tie':
+            players_dict[team_1][0] += pts_per_draw
+            players_dict[team_2][0] += pts_per_draw
             continue
         winner = winner.strip()
-        players_dict[winner][0] += 1
+        players_dict[winner][0] += pts_per_win
     return players_dict
