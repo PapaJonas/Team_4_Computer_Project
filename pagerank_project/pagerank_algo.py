@@ -2,15 +2,6 @@
 
 import copy
 
-def numb_of_players(players: list[str]) -> int:
-    """Calculate the number of players.
-
-    Args:
-        players (list[str]): A list of player names.
-
-    Returns:
-        int: The number of players in the list."""
-    return len(players)
 ##################################################################################################
 def connect_list(players: list[str], results: list[str, str, str, str]) -> list:
     """ Generate a list of connections representing game outcomes.
@@ -46,7 +37,7 @@ def connect_list(players: list[str], results: list[str, str, str, str]) -> list:
             connections.append([team_1, team_2])
     return connections
 ##################################################################################################
-def rank_return(n: int, connections: list[list]) -> list[float]:
+def rank_return(n: int, connections: list[list], damping: float) -> list[float]:
 
     """Calculate the PageRank of players based on game connections.
 
@@ -54,6 +45,7 @@ def rank_return(n: int, connections: list[list]) -> list[float]:
         n (int): The number of players.
         connections (list[list[int]]): 
         A list of connections where each connection is a pair [loser, winner].
+        demping: The number of probability of visiting random edge from 0 to 1
 
     Returns:
         list[float]: 
@@ -62,21 +54,25 @@ def rank_return(n: int, connections: list[list]) -> list[float]:
     """
     matr = [[0]*n for _ in range(n)]
     rank = [100/n] * n
+    damp_const = damping * 100 / n
     counter_from = [0]*n
     for el in connections:
         i, j = el
         counter_from[i] += 1
         matr[j][i] = 1
-
     for i, mas in enumerate(matr):
-        mas = [el/counter_from[j] for j, el in enumerate(mas)]
-        matr[i] = mas
-
+        masa = []
+        for j, el in enumerate(mas):
+            if el:
+                masa.append(el/counter_from[j])
+            else:
+                masa.append(0)
+        matr[i] = masa
     for _ in range(50):
         rank_cop = copy.copy(rank)
         for i in range(n):
             rank[i] = sum(rank_cop[j]*el for j, el in enumerate(matr[i]))
         summ_r = sum(rank)
-        rank = [100*el/summ_r for el in rank]
+        rank = [(100 - damp_const * n)*el/summ_r + damp_const for el in rank]
     rank = [round(el, 2) for el in rank]
     return rank
