@@ -17,7 +17,7 @@ def main() -> None:
     pts_per_win = 3 #
     pts_per_draw = 1 #
     damping = 0.15 #
-     # Завдання Нестору, щоб всі параметри вище вписувались через argparse...
+    # Завдання Нестору, щоб всі параметри вище вписувались через argparse...
     # players_file, games_file, filename = pagerank_cli.cli()
     
     players = pagerank_read.read_players(players_file)
