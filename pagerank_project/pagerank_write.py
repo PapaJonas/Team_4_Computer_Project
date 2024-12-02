@@ -20,7 +20,7 @@ def write_function(filename, information, rank):
     Example Usage:
     --------------
     rank = [15, 10, 5]
-    information = {"team1": [99, 200], "team2": [50, 50]}, "team3": [50, 40]}
+    information = {"team1": [99, 200, 2], "team2": [50, 50, 2]}, "team3": [50, 40, 2]}
     write_function("example.csv", information, rank)
     """
     ans = []
@@ -29,7 +29,6 @@ def write_function(filename, information, rank):
     def func(ans):
         return ans[0:1]
     sorted_information = sorted(ans, key = func, reverse = True)
-    print(sorted_information)
     with open(filename, 'w', encoding='utf-8') as file:
         file.write("team,games,points,rank\n")
         for team_data in sorted_information:
