@@ -2,7 +2,7 @@
 
 ## Project's topic
 
-    - Optimized standings
+    - Optimized standings 
 
 ## Project's main tasks
 
