@@ -50,7 +50,7 @@ def read_games(games_file: str) -> list[tuple[str, str, str, str]]:
 
     return results
 ##################################################################################################
-def update_players(results: list[tuple[str, str, str , str]], players_list: list[str], pts_per_win: int, pts_per_draw: int) -> dict[str, list[int]:
+def update_players(results: list[tuple[str, str, str , str]], players_list: list[str], pts_per_win: int, pts_per_draw: int) -> dict[str, list[int]]:
     """
     Updates player or team scores based on game results.
 
