@@ -2,7 +2,7 @@
 
 import csv
 
-def read_players(teams_file: str) -> dict[str, int]:
+def read_players(teams_file: str) -> list[str]:
     """
     Reads a list of teams from a CSV file and initializes their scores to 0.
 
@@ -10,8 +10,7 @@ def read_players(teams_file: str) -> dict[str, int]:
         teams_file (str): Path to the CSV file containing team names.
 
     Returns:
-        Dict[str, int]: A dictionary where keys are team names and\
-        values are their scores (initialized to 0).
+        List[str]: A list of team names as strings.
     """
     with open(teams_file, 'r', encoding='utf-8') as f:
         ans = []
@@ -51,25 +50,39 @@ def read_games(games_file: str) -> list[tuple[str, str, str, str]]:
 
     return results
 ##################################################################################################
-def update_players(results: list[tuple[str, str, str , str]], players_list: list[str], pts_per_win, pts_per_draw) -> dict:
+def update_players(results: list[tuple[str, str, str , str]], players_list: list[str], pts_per_win: int, pts_per_draw: int) -> dict[str, list[int]:
     """
-    Update player/team scores based on game results.
+    Updates player or team scores based on game results.
 
     Args:
         results (list[tuple[str, str, str, str]]): 
-        A list of tuples representing game results. 
-            Each tuple contains information such as the teams involved, 
-            the winner, and additional data.
-        players_list (list[str]): A list of player/team names.
+            A list of tuples representing game results. 
+            Each tuple contains:
+            - `team_1` (str): Name of the first team/player.
+            - `team_2` (str): Name of the second team/player.
+            - `winner` (str): Name of the winner or 'tie' if the game was a draw.
+            - `score` (str): The score of the game (e.g., 'X-Y').
+
+        players_list (list[str]): A list of all team/player names.
+
+        pts_per_win (int): Points awarded for a win.
+
+        pts_per_draw (int): Points awarded to each team/player in the event of a draw.
 
     Returns:
-        dict[str, list[int]]: A dictionary where the keys are player/team names, 
-        and the values are lists containing two integers: the first for the 
-        number of wins and the second reserved for future use.
+        dict[str, list[int]]: 
+            A dictionary where:
+            - Keys are team/player names.
+            - Values are lists containing:
+              1. Total points (int).
+              2. Reserved for future use (int, default 0).
+              3. Number of games played (int).
 
     Notes:
-        - If the winner is recorded as 'tie', no updates are made.
-        - Whitespace around winner names is stripped before processing.
+        - If the `winner` is `'tie'`, both teams are awarded points for a draw.
+        - Whitespace around `winner` names is stripped before processing.
+        - The `players_dict` is initialized with all players having `[0, 0, 0]` 
+          for points, reserved space, and games played, respectively.
     """
     players_dict = {player : [0, 0, 0] for player in players_list}
     for team_1, team_2, winner, _ in results:
