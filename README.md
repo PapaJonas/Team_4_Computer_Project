@@ -98,3 +98,20 @@ pagerank_write.write_function(filename, information, rank)
         
 ![photo_2024-12-01_18-27-19](https://github.com/user-attachments/assets/6b75bcd8-f36a-4594-b1af-348a7d229262)
 
+
+## Pagerank Algorithm Reader
+    This Python program reads and processes two types of CSV files to analyze game results and calculate player or team rankings. It is         part of a larger project implementing the Pagerank algorithm for sports or competitive standings.
+1. Player Data Reading
+The read_players function reads a list of players or teams from a file and initializes their scores to 0.
+
+        Input: A CSV file with team/player names (one name per line).
+        Output: A list of team/player names.
+2. Game Data Reading
+The read_games function parses game results from a CSV file, calculates the winner for each game, and formats the data.
+
+        Input: A CSV file with columns: Player1, Player2, and Score (e.g., 3-1).
+        Output: A list of tuples containing:
+            Player1: Name of the first team.
+            Player2: Name of the second team.
+        Winner: Name of the winner (or 'tie' for draws).
+        Score: Game score in X-Y format.
