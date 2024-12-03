@@ -18,7 +18,7 @@ def graph_create(filename_results: str, filename_games: str) -> None:
 
     with open(filename_results, mode='r', encoding='utf-8') as file:
         content = file.readlines()[1:]
-        results = {el.strip().split(',')[0]: float(el.strip().split(',')[2]) for el in content}
+        results = {el.strip().split(',')[0]: float(el.strip().split(',')[3]) for el in content}
 
     teams = results.keys()
     ranks = [value * 250 if value != 0.0 else 1200 for value in results.values()]

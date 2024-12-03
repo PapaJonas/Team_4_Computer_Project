@@ -29,12 +29,12 @@ def connect_list(players: list[str], results: list[str, str, str, str]) -> list:
         team_1 = players.index(team_1)
         team_2 = players.index(team_2)
         if winner == 'tie':
-            connections.append([team_1, team_2])
-            connections.append([team_2, team_1])
+            connections.append([team_1, team_2, 'd'])
+            connections.append([team_2, team_1, 'd'])
         elif flag:
-            connections.append([team_2, team_1])
+            connections.append([team_2, team_1, 'w'])
         else:
-            connections.append([team_1, team_2])
+            connections.append([team_1, team_2, 'w'])
     return connections
 ##################################################################################################
 def rank_return(n: int, connections: list[list], damping: float) -> list[float]:
@@ -57,9 +57,13 @@ def rank_return(n: int, connections: list[list], damping: float) -> list[float]:
     damp_const = damping * 100 / n
     counter_from = [0]*n
     for el in connections:
-        i, j = el
-        counter_from[i] += 1
-        matr[j][i] = 1
+        i, j, result = el
+        if result == 'w':
+            counter_from[i] += 1
+            matr[j][i] = 1
+        elif result == 'd':
+            counter_from[i] += 0.5
+            matr[j][i] = 0.5
     for i, mas in enumerate(matr):
         masa = []
         for j, el in enumerate(mas):
