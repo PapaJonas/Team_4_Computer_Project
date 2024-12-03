@@ -22,8 +22,12 @@
     - graph_create function builds a network-graph representation utilizing NetworkX tools.
 
 To create a graph with graph_create function several steps should be done in advance:
-
-1. Create a file with teams' names (csv format)
+1. Install matplotlib and networkx libraries:
+    ``` python
+    pip install matplotlib
+    pip install networkx
+    ```
+2. Create a file with teams' names (csv format)
 
 *Example*:
 
@@ -36,7 +40,7 @@ To create a graph with graph_create function several steps should be done in adv
         УКУ7
         УКУ8
     
-2. Create a file with games list (csv format: **winner,loser,score**)
+3. Create a file with games list (csv format: **winner,loser,score**)
 
 *Example*:
 
@@ -53,7 +57,7 @@ To create a graph with graph_create function several steps should be done in adv
         УКУ6,УКУ8,2-3
         УКУ2,УКУ3,1-1
 
-3. Write a simple code:
+4. Write a simple code:
 
 ```python
 
@@ -74,13 +78,13 @@ connections = pagerank_algo.connect_list(players, results)
 rank = pagerank_algo.rank_return(n, connections)
 pagerank_write.write_function(filename, information, rank)
 ```
-4. graph_create function takes two arguments: filename_ranks (str), and filename_games (str).
+5. graph_create function takes two arguments: filename_ranks (str), and filename_games (str).
 
     - filename_ranks - address of the file with teams' ranks. For the previous code it is **filename**
     variable.
     - filename_games - address of the file with teams' games. For the previous code it is **games_file** variable.
 
-5. To see the visualization of optimized standings you need to run a command:
+6. To see the visualization of optimized standings you need to run a command:
 
     ``` python
     visualize.graph_create(filename, games_file)
@@ -95,8 +99,6 @@ pagerank_write.write_function(filename, information, rank)
         2. node's size depends on team's rank
         3. nodes are connected with directed edges.
         4. edge's direction is derived by (**winner** -> **loser**) or (<->) if the game result is *tie*.
-        
-![photo_2024-12-01_18-27-19](https://github.com/user-attachments/assets/6b75bcd8-f36a-4594-b1af-348a7d229262)
 
 
 ## Pagerank Algorithm Reader
