@@ -89,6 +89,7 @@ pagerank_write.write_function(filename, information, rank)
     ``` python
     visualize.graph_create(filename, games_file)
     ```
+![photo_2024-12-03_23-10-38](https://github.com/user-attachments/assets/ea456974-6b73-4a3f-888e-0c594f8740ac)
 
 ## graph_create function working principles
 
