@@ -13,7 +13,7 @@ def cli():
     parser.add_argument("-r", "--results", type=str, help="write the name of the output file")
     parser.add_argument("-w", "--win", type=int, help="write how much points player will get for the win")
     parser.add_argument("-dr", "--draw", type=int, help="write how much points player will get for the draw")
-    parser.add_argument("-dmp", "--damping", type=float, help="write how much points will be dumped by algorithm")
+    parser.add_argument("-dmp", "--damping", type=float, help="write how much points will be damped by algorithm")
 
     args = parser.parse_args()
     return [args.players, args.games, args.results, args.win, args.draw, args.damping]
