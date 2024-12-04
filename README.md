@@ -16,6 +16,8 @@
     - pagerank_cli
     - visualize
     - main
+## Command line inteface
+    - CLI (Command-Line Interface) is an application that interacts with users through a terminal. Users input commands and parameters, and the program processes these inputs and returns outputs.
 
 ## Visualize part
 
