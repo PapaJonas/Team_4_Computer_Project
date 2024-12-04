@@ -32,7 +32,6 @@ def write_function(filename, information, rank):
 
     def func(ans):
         return ans[0], ans[1]
-    print(ans)
     sorted_information = sorted(ans, key = func, reverse = True)
 
     with open(filename, 'w', encoding='utf-8') as file:
