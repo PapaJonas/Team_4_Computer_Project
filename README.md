@@ -143,7 +143,7 @@ pagerank_write.write_function(filename, information, rank)
         1. nodes are marked as a team's name and it's rank
         2. node's size depends on team's rank
         3. nodes are connected with directed edges.
-        4. edge's direction is derived by (**winner** -> **loser**) or (<->) if the game result is *tie*.
+        4. edge's direction is derived by (**loser** -> **winner**) or (<->) if the game result is *tie*.
 
 
 ## Pagerank Algorithm Reader
