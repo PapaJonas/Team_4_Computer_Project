@@ -17,7 +17,46 @@
     - visualize
     - main
 ## Command line inteface
-    - CLI (Command-Line Interface) is an application that interacts with users through a terminal. Users input commands and parameters, and the program processes these inputs and returns outputs.
+
+    - This part consists of pagerank_cli function
+    - pagerank_cli creates a Command-Line Interface (CLI) using the argparse library. CLI is an application that interacts with users through a terminal. Users input commands and parameters, and the program processes these inputs and returns outputs.
+step-by-step breakdown
+
+1.Importing argparse
+      The argparse library is imported to handle command-line arguments.
+      
+2.Defining function
+
+3.Creating Argument Parser
+      An ArgumentParser object is created to process command-line arguments.
+
+4.Adding Arguments
+
+--players (-p): Specifies the file containing player data.
+--games (-g): Specifies the file containing game data.
+--results (-r): Specifies the output file for results.
+--win (-w): Specifies the points awarded for a win (integer).
+--draw (-dr): Specifies the points awarded for a draw (integer).
+--damping (-dmp): Specifies the damping factor for the algorithm (float).
+
+5.Parse Arguments:
+     parser.parse_args() reads and processes the command-line inputs.
+
+6.Return Values:
+     The function returns a list of parsed argument values:
+     [args.players, args.games, args.results, args.win, args.draw, args.damping]
+
+Example Usage:
+
+   - python main.py -p ../teams.txt -g ../games.txt -r ../example.txt -w 3 -dr 1 -dmp 0.85
+     (make sure you are in the right directiory)
+it will:
+     Collect and parse the provided arguments:
+     Return them as a list
+     ``` python
+     ["players.txt", "games.txt", "results.txt", 3, 1, 0.85]
+
+
 
 ## Visualize part
 
